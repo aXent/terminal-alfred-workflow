@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.axent.alfred.terminal</string>
+	<key>connections</key>
+	<dict>
+		<key>7FB1A3A6-5D1C-46E2-A0B7-691C82FD914B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BBFA8C4B-65B7-4DDF-8C8A-C06CBEEA0D24</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Robin Franssen</string>
+	<key>description</key>
+	<string>Open your current finder window in the terminal</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Terminal current finder window</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>terminal</string>
+				<key>subtext</key>
+				<string>Open current finder window in terminal</string>
+				<key>text</key>
+				<string>Terminal</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>7FB1A3A6-5D1C-46E2-A0B7-691C82FD914B</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>on ApplicationIsRunning(appName)	tell application "System Events" to set appNameIsRunning to exists (processes where name is appName)	return appNameIsRunningend ApplicationIsRunningtell application "Finder"	try		set frontWin to folder of front window as string		set frontWindowPath to (get POSIX path of frontWin)	on error error_message			end tryend telltry	get frontWindowPath
+	if ApplicationIsRunning("Terminal") then
+		tell application "System Events"			set frontmost of process "Terminal" to true			keystroke "t" using command down			keystroke "cd \"" &amp; frontWindowPath &amp; "\""			keystroke return		end tell			else		do shell script "open -a Terminal " &amp; frontWindowPath	end ifon error error_message	say "Could not open current finder window in terminal. Check if finder has an active window."end try</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BBFA8C4B-65B7-4DDF-8C8A-C06CBEEA0D24</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>7FB1A3A6-5D1C-46E2-A0B7-691C82FD914B</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+		<key>BBFA8C4B-65B7-4DDF-8C8A-C06CBEEA0D24</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://www.devarea.be</string>
+</dict>
+</plist>
