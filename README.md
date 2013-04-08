@@ -7,4 +7,4 @@ If the terminal is active it will open a new tab.
 
 *Enjoy!*
 
-
+![image](https://raw.github.com/aXent/terminal-alfred-workflow/master/screenshots/screenshot1.png)
