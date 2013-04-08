@@ -53,9 +53,9 @@
 				<key>escaping</key>
 				<integer>63</integer>
 				<key>script</key>
-				<string>on ApplicationIsRunning(appName)	tell application "System Events" to set appNameIsRunning to exists (processes where name is appName)	return appNameIsRunningend ApplicationIsRunningtell application "Finder"	try		set frontWin to folder of front window as string		set frontWindowPath to (get POSIX path of frontWin)	on error error_message			end tryend telltry	get frontWindowPath
-	if ApplicationIsRunning("Terminal") then
-		tell application "System Events"			set frontmost of process "Terminal" to true			keystroke "t" using command down			keystroke "cd \"" &amp; frontWindowPath &amp; "\""			keystroke return		end tell			else		do shell script "open -a Terminal " &amp; frontWindowPath	end ifon error error_message	say "Could not open current finder window in terminal. Check if finder has an active window."end try</string>
+				<string>on ApplicationIsRunning(appName)	tell application "System Events" to set appNameIsRunning to exists (processes where name is appName)	return appNameIsRunningend ApplicationIsRunningtell application "Finder"	try		set frontWin to folder of front window as string		set frontWindowPath to (get POSIX path of frontWin)
+	on error error_message			end tryend telltry	get frontWindowPath	if ApplicationIsRunning("Terminal") then		tell application "System Events"			set frontmost of process "Terminal" to true			keystroke "t" using command down			keystroke "cd \"" &amp; frontWindowPath &amp; "\""			keystroke return		end tell	else		do shell script "open -a Terminal \"" &amp; frontWindowPath &amp; "\""	end ifon error error_message
+	say "Could not open current finder window in terminal. Check if finder has an active window."end try</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -77,7 +77,7 @@
 		<key>BBFA8C4B-65B7-4DDF-8C8A-C06CBEEA0D24</key>
 		<dict>
 			<key>ypos</key>
-			<real>110</real>
+			<real>120</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
